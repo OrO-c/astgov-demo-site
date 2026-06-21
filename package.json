@@ -9,7 +9,7 @@
     "preview": "astro preview"
   },
   "dependencies": {
-    "@astgov/theme": "^2.0.0",
+    "@astgov/theme": "^2.0.1",
     "astro": "^6.4.8"
   }
 }
