@@ -1,0 +1,29 @@
+---
+import { BaseLayout } from '@astgov/theme';
+import { siteConfig } from '../config/site.config';
+---
+
+<BaseLayout
+  siteName={siteConfig.siteName} title="关于我们"
+  description={siteConfig.meta.description}
+  topBar={siteConfig.topBar} navItems={siteConfig.nav} footer={siteConfig.footer}
+  colors={siteConfig.colors} defaultFontSize={siteConfig.defaultFontSize}
+  ui={{ dropdownArrow: siteConfig.ui?.dropdownArrow, copyright: siteConfig.ui?.copyright }}
+>
+  <div class="page-section"><div class="container">
+    <div class="breadcrumb"><a href="/">首页</a> &gt; <span>关于我们</span></div>
+    <div class="page-content static-content">
+      <h1>关于{siteConfig.siteName}</h1>
+      <p>　　{siteConfig.siteName}是一所……（填写介绍）</p>
+    </div>
+  </div></div>
+</BaseLayout>
+
+<style>
+.page-section{padding:15px 0;min-height:400px}
+.breadcrumb{font-size:12px;color:#666;padding:8px 0;margin-bottom:10px;border-bottom:1px solid var(--color-divider)}
+.breadcrumb a{color:var(--color-link,#00F)}
+.page-content{background:#FFF;border:1px solid var(--color-border,#CCC);padding:25px;min-height:400px}
+.static-content h1{font-size:22px;text-align:center;color:var(--color-primary);margin-bottom:20px}
+.static-content p{font-size:14px;line-height:2;margin-bottom:8px;text-indent:2em}
+</style>

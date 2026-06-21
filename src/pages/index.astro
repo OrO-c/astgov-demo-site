@@ -1,0 +1,49 @@
+---
+import { BaseLayout, CategorySection } from '@astgov/theme';
+import { getCollection } from 'astro:content';
+import { siteConfig } from '../config/site.config';
+
+const allPosts = await getCollection('pages', ({ data }) => !data.draft);
+const byCategory = {};
+for (const p of allPosts) {
+  const parts = p.id.split('/');
+  const cat = p.data.category || parts[parts.length - 2];
+  if (!byCategory[cat]) byCategory[cat] = [];
+  byCategory[cat].push(p);
+}
+for (const cat in byCategory) {
+  byCategory[cat].sort((a, b) => b.data.date.localeCompare(a.data.date));
+}
+---
+
+<BaseLayout
+  siteName={siteConfig.siteName}
+  siteSubtitle={siteConfig.siteSubtitle}
+  siteLogo={siteConfig.siteLogo}
+  title=""
+  description={siteConfig.meta.description}
+  keywords={siteConfig.meta.keywords}
+  topBar={siteConfig.topBar}
+  navItems={siteConfig.nav}
+  footer={siteConfig.footer}
+  colors={siteConfig.colors}
+  defaultFontSize={siteConfig.defaultFontSize}
+  ui={{ moreText: siteConfig.ui?.moreText, dropdownArrow: siteConfig.ui?.dropdownArrow, copyright: siteConfig.ui?.copyright, quickLinks: siteConfig.ui?.quickLinks, friendLinks: siteConfig.ui?.friendLinks, fontSizeLabels: siteConfig.ui?.fontSizeLabels, dateFormat: siteConfig.ui?.dateFormat }}
+>
+  <section class="main-section"><div class="container"><div class="two-col">
+    <div class="col-main">
+      {siteConfig.categories?.filter(c => c.side === 'main').map(cat => {
+        const posts = byCategory[cat.slug]?.slice(0, cat.limit) || [];
+        return <CategorySection title={cat.title} posts={posts} viewAllLink={`/${cat.slug}`} moreText={siteConfig.ui?.moreText} dateFormat={siteConfig.ui?.dateFormat} />;
+      })}
+    </div>
+    <div class="col-side">
+      {siteConfig.categories?.filter(c => c.side === 'side').map(cat => {
+        const posts = byCategory[cat.slug]?.slice(0, cat.limit) || [];
+        return <CategorySection title={cat.title} posts={posts} viewAllLink={`/${cat.slug}`} moreText={siteConfig.ui?.moreText} dateFormat={siteConfig.ui?.dateFormat} />;
+      })}
+    </div>
+  </div></div></section>
+</BaseLayout>
+
+<style>.main-section{padding:8px 0}</style>
