@@ -7,24 +7,12 @@ const posts = await getCollection('pages', ({ data }) => !data.draft).then(ps =>
 const sorted = posts.sort((a, b) => b.data.date.localeCompare(a.data.date));
 ---
 
-<BaseLayout
-  siteName={siteConfig.siteName} siteSubtitle={siteConfig.siteSubtitle} title="新闻"
-  description={siteConfig.meta.description} keywords={siteConfig.meta.keywords}
-  topBar={siteConfig.topBar} navItems={siteConfig.nav} footer={siteConfig.footer}
-  colors={siteConfig.colors} defaultFontSize={siteConfig.defaultFontSize}
-  ui={{ moreText: siteConfig.ui?.moreText, dateFormat: siteConfig.ui?.dateFormat, dropdownArrow: siteConfig.ui?.dropdownArrow, copyright: siteConfig.ui?.copyright }}
->
+<BaseLayout config={siteConfig} title="新闻">
   <div class="page-section"><div class="container">
     <div class="breadcrumb"><a href="/">首页</a> &gt; <span>新闻</span></div>
-    <div class="page-content">
+    <div class="page-content" style="padding:15px">
       <CategorySection title="全部新闻" posts={sorted} moreText={siteConfig.ui?.moreText} dateFormat={siteConfig.ui?.dateFormat} />
     </div>
   </div></div>
 </BaseLayout>
 
-<style>
-.page-section{padding:15px 0;min-height:400px}
-.breadcrumb{font-size:12px;color:#666;padding:8px 0;margin-bottom:10px;border-bottom:1px solid var(--color-divider)}
-.breadcrumb a{color:var(--color-link,#00F)}
-.page-content{background:#FFF;border:1px solid var(--color-border,#CCC);padding:15px;min-height:400px}
-</style>
