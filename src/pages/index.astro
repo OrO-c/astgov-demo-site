@@ -1,5 +1,11 @@
 ---
-import { BaseLayout, Banner, Headline, CategorySection, QuickLinks, FriendLinks, Countdown } from '@astgov/theme';
+import { BaseLayout } from '@astgov/theme/layouts/BaseLayout.astro';
+import Banner from '@astgov/theme/components/Banner.astro';
+import Headline from '@astgov/theme/components/Headline.astro';
+import CategorySection from '@astgov/theme/components/CategorySection.astro';
+import QuickLinks from '@astgov/theme/components/QuickLinks.astro';
+import FriendLinks from '@astgov/theme/components/FriendLinks.astro';
+import Countdown from '@astgov/theme/components/Countdown.astro';
 import { getCollection } from 'astro:content';
 import { siteConfig } from '../config/site.config';
 

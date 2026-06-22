@@ -12,7 +12,7 @@ export default defineConfig({
     plugins: [tailwindcss()],
     resolve: {
       alias: {
-        '@astgov/theme': path.resolve(__dirname, '../packages/theme'),
+        '@astgov/theme': path.resolve(__dirname, '../packages/theme/src'),
       },
     },
   },

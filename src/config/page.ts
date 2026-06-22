@@ -1,8 +1,7 @@
 /**
  * AstGov 页面通用导入
  *
- * 独立页面（about、contact 等）从此文件导入，避免每页重复
- * 两行 import → 一行解决
+ * 独立页面从此文件导入，避免每页重复 import
  */
-export { BaseLayout } from '@astgov/theme';
+export { default as BaseLayout } from '@astgov/theme/layouts/BaseLayout.astro';
 export { siteConfig } from './site.config';
