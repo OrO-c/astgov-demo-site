@@ -45,7 +45,7 @@ const bl = siteConfig.ui?.article?.backLinkText || '← 返回列表';
     {data.tags.length > 0 && <span>{tl}{data.tags.join(' / ')}</span>}
   </div>
   {data.summary && <p class="article-summary">{data.summary}</p>}
-  <div class="article-content"><Content /></div>
+  <div class="article-content prose prose-lg max-w-none"><Content /></div>
   <div class="article-footer"><a href={`/${category}`} class="back-link">{bl}</a></div>
 </BlogLayout>
 
@@ -54,20 +54,8 @@ const bl = siteConfig.ui?.article?.backLinkText || '← 返回列表';
 .article-meta{text-align:center;font-size:13px;color:#999;padding-bottom:15px;margin-bottom:20px;border-bottom:1px solid var(--color-divider)}
 .article-meta span{margin:0 12px}
 .article-summary{font-size:14px;color:#555;background:#F8F8F8;padding:12px 18px;margin-bottom:25px;border-left:4px solid var(--color-secondary);line-height:1.8}
-.article-content{font-size:16px;line-height:1.9;color:#2c2c2c;max-width:100%}
-.article-content p{margin-bottom:1em;text-align:justify}
-.article-content h2{font-size:20px;font-weight:bold;color:var(--color-primary);margin:2em 0 .8em;padding-bottom:6px;border-bottom:1px solid #e8e8e8}
-.article-content h3{font-size:17px;font-weight:bold;color:#333;margin:1.6em 0 .6em}
-.article-content img{max-width:100%;height:auto;display:block;margin:1.5em auto;border:1px solid #e0e0e0;padding:4px;background:#fafafa}
-.article-content blockquote{margin:1.5em 0;padding:10px 18px;border-left:4px solid var(--color-secondary);background:#f9f9f9;color:#555}
-.article-content ul,.article-content ol{margin:.8em 0;padding-left:2em;line-height:1.9}
-.article-content code{font-family:Consolas,Monaco,monospace;font-size:14px;background:#f0f0f0;padding:2px 6px;border-radius:3px;color:#c7254e}
-.article-content pre{margin:1.2em 0;padding:14px 16px;background:#f5f5f5;border:1px solid #e0e0e0;overflow-x:auto}
-.article-content pre code{background:none;padding:0;color:inherit}
-.article-content table{width:100%;border-collapse:collapse;margin:1.2em 0;font-size:14px}
-.article-content th,.article-content td{border:1px solid #d0d0d0;padding:8px 12px;text-align:left}
-.article-content th{background:#f0f4f8;font-weight:bold}
+
 .article-footer{margin-top:35px;padding-top:18px;border-top:1px solid var(--color-divider)}
 .back-link{color:var(--color-link,#00F);font-size:14px}
-@media(max-width:767px){.article-title{font-size:20px}.article-content{font-size:15px}.article-meta span{display:block;margin:2px 0}}
+@media(max-width:767px){.article-title{font-size:20px}.article-meta span{display:block;margin:2px 0}}
 </style>
