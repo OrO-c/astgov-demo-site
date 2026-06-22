@@ -4,12 +4,12 @@ import { getCollection, render } from 'astro:content';
 import { siteConfig } from '../../config/site.config';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('pages', ({ data }) => !data.draft);
+  const posts = await getCollection('posts', ({ data }) => !data.draft);
   return posts.map(post => {
     const parts = post.id.split('/');
-    // id format: "pages/news/001" — pop the last part as slug, second-to-last as category
+    // id format: "news/001" — pop the last part as slug, first part as category
     const slug = parts.pop()!;
-    const category = post.data.category || parts[parts.length - 1] || slug;
+    const category = post.data.category || parts[0] || slug;
     return {
       params: { category, slug },
       props: { post },
@@ -18,7 +18,7 @@ export async function getStaticPaths() {
 }
 const { post } = Astro.props;
 const parts = post.id.split('/');
-const category = post.data.category || parts[parts.length - 2] || parts[parts.length - 1] || '';
+const category = post.data.category || parts[0] || '';
 const { Content, headings } = await render(post);
 const data = post.data;
 const dateCN = `${data.date.slice(0,4)}年${data.date.slice(5,7)}月${data.date.slice(8,10)}日`;

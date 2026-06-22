@@ -1,22 +1,27 @@
 ---
-import { BaseLayout, CategorySection } from '@astgov/theme';
+import { BaseLayout, Banner, Headline, CategorySection, QuickLinks, FriendLinks, Countdown } from '@astgov/theme';
 import { getCollection } from 'astro:content';
 import { siteConfig } from '../config/site.config';
 
-const allPosts = await getCollection('pages', ({ data }) => !data.draft);
+const allPosts = await getCollection('posts', ({ data }) => !data.draft);
 const byCategory = {};
 for (const p of allPosts) {
   const parts = p.id.split('/');
-  const cat = p.data.category || parts[parts.length - 2];
+  const cat = p.data.category || parts[0];
   if (!byCategory[cat]) byCategory[cat] = [];
   byCategory[cat].push(p);
 }
 for (const cat in byCategory) {
   byCategory[cat].sort((a, b) => b.data.date.localeCompare(a.data.date));
 }
+
+const allBanner = (await getCollection('banner')).sort((a, b) => a.data.order - b.data.order).map(e => ({ src: e.data.src, alt: e.data.alt, link: e.data.link, width: e.data.width, height: e.data.height }));
+const allHeadline = (await getCollection('headline')).sort((a, b) => a.data.order - b.data.order).map(e => ({ src: e.data.src, alt: e.data.alt, title: e.data.title, date: e.data.date, link: e.data.link, width: e.data.width, height: e.data.height }));
 ---
 
 <BaseLayout config={siteConfig}>
+  {siteConfig.modules?.banner !== false && allBanner.length > 0 && <Banner images={allBanner} />}
+  {siteConfig.modules?.headline !== false && allHeadline.length > 0 && <Headline cards={allHeadline} />}
   <section class="main-section"><div class="container"><div class="two-col">
     <div class="col-main">
       {siteConfig.categories?.filter(c => c.side === 'main').map(cat => {
@@ -31,6 +36,8 @@ for (const cat in byCategory) {
       })}
     </div>
   </div></div></section>
+  {siteConfig.modules?.quickLinks !== false && <QuickLinks links={siteConfig.quickLinks} />}
+  {siteConfig.modules?.friendLinks !== false && <FriendLinks links={siteConfig.friendLinks} />}
 </BaseLayout>
 
 <style>.main-section{padding:8px 0}</style>

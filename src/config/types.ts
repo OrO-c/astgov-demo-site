@@ -19,33 +19,11 @@ export interface NavItem {
   dropdown?: { text: string; url: string; target?: string }[];
 }
 
-export interface BannerImage {
-  src: string;
-  alt: string;
-  link?: string;
-}
-
-export interface BannerConfig {
-  images: BannerImage[];
-  height?: number;
-  autoplayInterval?: number;
-  prevText?: string;
-  nextText?: string;
-}
-
 export interface CategoryConfig {
   title: string;
   slug: string;
   limit: number;
   side: 'main' | 'side';
-}
-
-export interface HeadlineCard {
-  src: string;
-  alt: string;
-  title: string;
-  date: string;
-  link?: string;
 }
 
 export interface QuickLinkItem {
@@ -152,8 +130,6 @@ export interface SiteConfig {
   nav: NavItem[];
   modules: Record<string, boolean>;
   categories?: CategoryConfig[];
-  banner: BannerConfig;
-  headlineCards?: HeadlineCard[];
   quickLinks?: QuickLinkItem[];
   friendLinks?: FriendLinkItem[];
   footer: FooterConfig;

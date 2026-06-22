@@ -3,7 +3,7 @@ import { BaseLayout, CategorySection } from '@astgov/theme';
 import { getCollection } from 'astro:content';
 import { siteConfig } from '../../config/site.config';
 
-const posts = await getCollection('pages', ({ data }) => !data.draft).then(ps => ps.filter(p => (p.data.category || p.id.split('/')[p.id.split('/').length - 2]) === 'news'));
+const posts = await getCollection('posts', ({ data }) => !data.draft).then(ps => ps.filter(p => (p.data.category || p.id.split('/')[0]) === 'news'));
 const sorted = posts.sort((a, b) => b.data.date.localeCompare(a.data.date));
 ---
 
@@ -15,4 +15,3 @@ const sorted = posts.sort((a, b) => b.data.date.localeCompare(a.data.date));
     </div>
   </div></div>
 </BaseLayout>
-

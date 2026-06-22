@@ -82,18 +82,6 @@ export const siteConfig: SiteConfig = {
     { title: '学术动态', slug: 'academics', limit: 5, side: 'side' },
   ],
 
-  // ---- 轮播图 ----
-  banner: {
-    images: [
-      { src: '/images/banner1.jpg', alt: '校园风光', link: '/about' },
-    ],
-  },
-
-  // ---- 头条卡片 ----
-  headlineCards: [
-    { src: '/images/card1.jpg', alt: '招生', title: '2026 年本科招生简章发布', date: '2026-06-01', link: '/admission' },
-  ],
-
   // ---- 快速通道 ----
   quickLinks: [
     { text: '招生信息', url: '/admission' },
